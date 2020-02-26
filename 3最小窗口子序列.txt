@@ -1,0 +1,36 @@
+from collections import Counter
+class Solution:
+    def minWindow(self, S: str, T: str) -> str:
+        if len(S)<len(T) or not S or not T:
+            return ""
+        
+        map_reqiured = Counter(T)
+        map_formed = {}
+        cnt_required = len(map_reqiured)
+        cnt_formed = 0
+
+        min_ans = float("inf"),None,None
+        left,right=0,0
+        
+        while right<len(S):
+            c = S[right]
+            map_formed[c] = map_formed.get(c,0)+1
+            if c in map_reqiured and map_reqiured[c] == map_formed[c]:
+                cnt_formed+=1
+            
+            while left<=right and cnt_formed==cnt_required:
+                c = S[left]
+                if c not in map_reqiured:
+                    left+=1
+                    if min_ans[0]>right-left+1:
+                        min_ans = right-left+1,left,right
+                else:
+                    map_formed[c]-=1
+                    cnt_formed-=1                     
+
+            right+=1
+        
+        return S[min_ans[1]:min_ans[2]+1]
+
+
+
