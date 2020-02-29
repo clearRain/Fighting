@@ -1,0 +1,30 @@
+# -*- coding:utf-8 -*-
+#建立辅助栈保存次出栈入栈后的最小值，实现O(1)复杂度找最小值
+class Solution:
+    def __init__(self):
+        self.data_stack = []
+        self.min_stack = [] 
+        
+    def push(self, node):
+        current_min = 0
+        self.data_stack.append(node)   #data_stack = [4,2,3]
+        if len(self.min_stack)==0:     
+            current_min = node          #current_min = 4
+        else:
+            current_min = min(self.min_stack[-1],node)  #current_min = 2
+        self.min_stack.append(current_min)   #min_stack = [4,2,2]
+
+    def pop(self):
+        if len(self.data_stack)>0:
+            self.data_stack.pop()
+            self.min_stack.pop()
+            
+    def top(self):
+        if len(self.data_stack)>0:
+            return self.data_stack[-1]
+        # write code here
+    def min(self):
+        if len(self.min_stack)>0:
+            return self.min_stack[-1]
+        
+        # write code here
