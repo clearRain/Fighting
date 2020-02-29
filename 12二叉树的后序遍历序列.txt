@@ -1,0 +1,17 @@
+class Solution:
+    def VerifySquenceOfBST(self, sequence):    #sequence = [3,7,5,10,13,12,8]
+        if len(sequence)==0:
+            return False
+        return self.is_BST(sequence,0,len(sequence))     
+    
+    def is_BST(self,seq, start,end):    #start = 0, end=7
+        if start>=end:
+            return True
+        split = start                  #split = 3
+        pivot = seq[end-1]               #pivot = 8
+        while seq[split]<pivot and split<end:
+            split+=1
+        for i in range(split,end-1):  #(3,6)
+            if seq[i]<pivot:
+                return False
+        return self.is_BST(seq, start,split) and self.is_BST(seq,split,end-1)
