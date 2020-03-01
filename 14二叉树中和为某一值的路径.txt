@@ -1,0 +1,29 @@
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    # 返回二维列表，内部每个列表表示找到的路径
+    def FindPath(self, root, expectNumber):
+        self.result = []
+        self.sum = expectNumber            #self.sum = 22
+        
+        if root is not None:
+            self.dfs(root,[root.val],root.val)
+        return self.result
+    
+    def dfs(self,root,path, Sum):
+        if root.left is None and root.right is None:
+            if Sum == self.sum:
+                self.result.append(path)
+        
+        if root.left != None:
+            left_val = root.left.val
+            self.dfs(root.left, path + [left_val],Sum+left_val)
+        if root.right != None:
+            right_val = root.right.val
+            self.dfs(root.right, path + [right_val], Sum+right_val)
+        
+        # write code here
