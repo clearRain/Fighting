@@ -1,0 +1,26 @@
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    def Convert(self, pRootOfTree):
+        if pRootOfTree is None:
+            return pRootOfTree
+        self.ConvertTree(pRootOfTree,None)
+        
+        root = pRootOfTree
+        while root != None:
+            root = root.left
+        return root
+        
+    def ConvertTree(self, root, pre):
+        if root is None:
+            return 
+        self.ConvertTree(root.left, pre)
+        root.left = pre
+        if pre != None:
+            pre.right = root
+        pre = root
+        self.ConvertTree(root.right, pre)
