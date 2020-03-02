@@ -1,0 +1,19 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def Permutation(self, ss):
+        if len(ss) == 0:
+            return []
+        ss = list(ss)
+        ss.sort()
+        self.result = []
+        self.permutation(ss,"")
+        res = list(set(self.result))
+        res.sort()
+        return res
+        
+    def permutation(self,ss,path):
+        if len(ss)==0:
+            self.result.append(path)
+
+        for i,word in enumerate(ss):
+            self.permutation(ss[:i]+ss[i+1:],path+word)
