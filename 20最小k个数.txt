@@ -1,0 +1,32 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def GetLeastNumbers_Solution(self, tinput, k):
+        if k>len(tinput) or k==0:
+            return []
+        self.k = k
+        self.min_k = []
+        
+        for x in tinput:
+            self.PopOrder(x)
+        return self.min_k
+        
+    def PopOrder(self,x):             #x = 4
+        if len(self.min_k)<self.k:     #min_k = [1,2,4,5]
+            self.min_k.append(x)
+        else:
+            if x>=self.min_k[-1]:
+                return
+            else:
+                self.min_k[-1] = x
+        
+        for i in range(len(self.min_k)-1):   
+            j = len(self.min_k)-i-2
+            if self.min_k[j]>self.min_k[j+1]:
+                temp = self.min_k[j]
+                self.min_k[j] = self.min_k[j+1]
+                self.min_k[j+1] = temp
+            else:
+                break
+                
+            
+        # write code here
