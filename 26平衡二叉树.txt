@@ -1,0 +1,15 @@
+
+class Solution {
+public:
+    bool IsBalanced_Solution(TreeNode* pRoot) {
+        return deepOfTree(pRoot) != -1;
+    }
+ 
+    int deepOfTree(TreeNode* pRoot) {
+        if(pRoot == NULL) return 0;
+        int a = deepOfTree(pRoot->left);
+        int b = deepOfTree(pRoot->right);
+        if(a == -1  || b == -1 || abs(a-b) > 1) return -1; //根据定义，左子树不是AVLTree或右子树不是AVLTree或自己本身就算不是AVLTree
+        else return (a>b?a:b) + 1;
+    }
+}
