@@ -1,0 +1,16 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def ReverseSentence(self, s):
+        s = s.split(" ")
+        print(s)
+        i,j=0,len(s)-1
+        while i<j:
+            s[i],s[j]=s[j],s[i]
+            i+=1
+            j-=1
+        result = s[0]
+        for i in range(1,len(s)):
+            word = s[i]
+            result = result + " " + word
+        return result
+        # write code here
