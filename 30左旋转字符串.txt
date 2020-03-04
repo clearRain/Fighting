@@ -1,0 +1,22 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def LeftRotateString(self, s, n):
+        if n>len(s):
+            return ""
+        s = list(s)
+        length = len(s)
+        self.reverseString(s,0,length-1)
+        #length = 9 3
+        self.reverseString(s,0,length-n-1)
+        self.reverseString(s,length-n,length-1)
+        result = ""
+        for word in s:
+            result+=word
+        return result
+    
+    def reverseString(self,s,i,j):
+        while i<j:
+            s[i],s[j] = s[j],s[i]
+            i+=1
+            j-=1
+        # write code here
