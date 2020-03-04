@@ -1,0 +1,17 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def FindContinuousSequence(self, tsum):
+        Sum = 1
+        limit = tsum//2+1
+        result = []
+        j=1
+        for i in range(1,limit):
+            while j<limit and Sum+j<tsum:
+                j+=1
+                Sum+=j
+            if Sum==tsum:
+                result.append(list(range(i,j+1)))
+            Sum-=i
+        return result
+        
+        # write code here
