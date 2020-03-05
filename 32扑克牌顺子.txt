@@ -1,0 +1,18 @@
+# -*- coding:utf-8 -*-
+class Solution:
+    def IsContinuous(self, numbers):
+        if len(numbers) == 0:
+            return False
+        numbers.sort()             #[0,2,3,4,6]  [1,2,3,4,6]
+        zero_numbers = 0
+        for num in numbers:
+            if num==0:
+                zero_numbers+=1    #0
+        diff = 0
+        hasCopy = False
+        for i in range(zero_numbers+1,len(numbers)):
+            if numbers[i]==numbers[i-1]:
+                return False
+            diff += (numbers[i]-numbers[i-1]-1) 
+        return diff <= zero_numbers
+        # write code here
