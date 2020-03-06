@@ -1,0 +1,23 @@
+class Solution:
+    def GetNext(self, pNode):
+        if pNode==None:
+            return None
+        
+        if pNode.left or pNode.right:
+            return self.midOrder(pNode)
+        else:
+            return pNode.next
+    
+    def midOrder(self,node):
+        result = []
+        nodeList = []
+        while len(nodeList)!=0 or node!=None:
+            while node != None:
+                nodeList.append(node)
+                node = node.left
+            temp = nodeList.pop()
+            result.append(temp)
+            if len(result) == 2:
+                break
+            node = temp.right
+        return nodeList[-1]
